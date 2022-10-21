@@ -7,8 +7,6 @@ using namespace std;
 const int MAX_VECTOR_SIZE = 100000000;
 const int MAX_MATRIX_SIZE = 10000;
 
-// Динамический вектор - 
-// шаблонный вектор на динамической памяти
 template<class T>
 class TDynamicVector
 {
@@ -149,7 +147,7 @@ public:
     }
     TDynamicVector operator*(double val)
     {
-        TDynamicVecor<T> a(sz);
+        TDynamicVector<T> a(sz);
         for (size_t i = 0; i < sz; i++) {
             a.pMem[i] = pMem[i] * val;
         }
@@ -203,13 +201,13 @@ public:
     friend istream& operator>>(istream& in, TDynamicVector& v)
     {
         for (size_t i = 0; i < v.sz; i++)
-            in >> v.pMem[i]; // требуется оператор>> для типа T
+            in >> v.pMem[i]; 
         return in;
     }
     friend ostream& operator<<(ostream& out, const TDynamicVector& v)
     {
         for (size_t i = 0; i < v.sz; i++)
-            out << v.pMem[i] << ' '; // требуется оператор<< для типа T
+            out << v.pMem[i] << ' '; 
         return out;
     }
 };
@@ -217,13 +215,6 @@ public:
 
 
 
-
-
-
-
-
-// Динамическая матрица - 
-// шаблонная матрица на динамической памяти
 template<class T>
 class TDynamicMatrix : public TDynamicVector<TDynamicVector<T>>
 {
@@ -238,6 +229,7 @@ public:
             }    
     }
     TDynamicMatrix(const TDynamicVector<TDynamicVector<T>> &m): TDynamicVector<TDynamicVector<T>>(m){}
+
     // сравнение
     bool operator==(const TDynamicMatrix& m) const noexcept
     {
@@ -255,18 +247,53 @@ public:
         else flag = false;
         return flag;
     }
+    bool operator!=(const TDynamicMatrix& m) const noexcept {
+        bool flag = false;
+        if (sz == m.sz) {
+            for (size_t i = 0; i < m.sz; i++)
+            {
+                for (size_t j = 0; j < m.sz; j++)
+                {
+                    if (pMem[i][j] != m.pMem[i][j])
+                        flag = true;
+                }
+            }
+        }
+        else flag = true;
+        return flag;
+    }
 
     // матрично-скалярные операции
-    TDynamicVector<T> operator*(const T& val)
+    TDynamicMatrix operator*(const T& val)
     {
+        TDynamicMatrix m(sz);
+        for (size_t i = 0; i < sz; i++) {
+            m.pMem[i] = pMem[i] * val;
+        }
+        return m;
     }
 
     // матрично-векторные операции
     TDynamicVector<T> operator*(const TDynamicVector<T>& v)
     {
+
     }
 
     // матрично-матричные операции
+    TDynamicMatrix& operator=(const TDynamicMatrix& m) {
+        if (*this != m)
+        {
+            if (sz != m.sz)
+            {
+                sz = m.sz;
+                delete[] pMem;
+                pMem = new TDynamicVector<T>(sz);
+            }
+            for (size_t i = 0; i < sz; i++)
+                pMem[i] = m.pMem[i];
+        }
+        return *this;
+    }
     TDynamicMatrix operator+(const TDynamicMatrix& m)
     {
         return TDynamicVector<TDynamicVector<T>> :: operator+(m);
