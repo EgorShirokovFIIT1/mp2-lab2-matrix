@@ -131,7 +131,7 @@ public:
     // скалярные операции
     TDynamicVector operator+(T val)
     {
-        TDynamicVecor<T> a(sz);
+        TDynamicVector<T> a(sz);
         for (size_t i = 0; i < sz; i++) {
             a.pMem[i] = pMem[i] + val;
         }
@@ -139,7 +139,7 @@ public:
     }
     TDynamicVector operator-(double val)
     {
-        TDynamicVecor<T> a(sz);
+        TDynamicVector<T> a(sz);
         for (size_t i = 0; i < sz; i++) {
             a.pMem[i] = pMem[i] - val;
         }
