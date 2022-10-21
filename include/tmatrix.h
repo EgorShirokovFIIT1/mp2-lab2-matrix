@@ -210,6 +210,10 @@ public:
             out << v.pMem[i] << ' '; 
         return out;
     }
+
+    size_t getSize() {
+        return sz;
+    }
 };
 
 
@@ -274,9 +278,9 @@ public:
     }
 
     // матрично-векторные операции
-    TDynamicVector<T> operator*(const TDynamicVector<T>& v)
+    TDynamicMatrix operator*(const TDynamicVector<T>& v)
     {
-
+       
     }
 
     // матрично-матричные операции
