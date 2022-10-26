@@ -17,8 +17,10 @@ void main()
           a[i][j] = i + 10 + j;
           b[i][j] = (i + 10 + j) * 2;
       }
-  v = v * 12;;
+  c = a + b;
+  v = v * v1;
   cout << "Matrix a: " << endl << a << endl;
   cout << "Matrix b: " << endl << b << endl;
-  cout << "Matrix c:" << endl << v << endl;
+  cout << "Matrix c:" << endl << c << endl;
+  cout << "Vector v:" << endl << v << endl;
 }
