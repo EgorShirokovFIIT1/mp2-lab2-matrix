@@ -294,13 +294,11 @@ public:
     TDynamicVector<T> operator*(const TDynamicVector<T>& v)
     {
         TDynamicVector a(sz);
-        T tmp
-            for (int i = 0; i < sz; i++) {
-                tmp = v[i] * pMem[i];
-                a.pMem[i] = tmp;
-                tmp = 0;
-            }
-        return a;
+        for (int i = 0; i < sz; i++) {
+            T tmp = a[i] * pMem[i];
+            t[i] = tmp;
+        }
+        return t;
     }
 
     // матрично-матричные операции
@@ -316,7 +314,7 @@ public:
             for (size_t i = 0; i < sz; i++)
                 pMem[i] = m.pMem[i];
         }
-        return *this;
+        else return *this;
     }
     TDynamicMatrix operator+(const TDynamicMatrix& m)
     {
@@ -328,6 +326,20 @@ public:
     }
     TDynamicMatrix operator*(const TDynamicMatrix& m)
     {
+        if (m.sz == sz) {
+            TDynamicMatrix a(sz);
+            for (size_t i = 0; i < sz; i++) {
+                for (size_t j = 0; j < sz; j++) {
+                    T tmp = 0;
+                    for (size_t k = 0; k < sz; k++) {
+                        tmp += pMem[i][k] * m.pMem[k][j];
+                    }
+                    a.pMem[i][j] = tmp;
+                }
+            }
+            return a;
+        }
+        else throw invalid_argument("Incorrect matrix size!");
     }
 
     // ввод/вывод
