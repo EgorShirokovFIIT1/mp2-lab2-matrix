@@ -177,7 +177,7 @@ TEST(TDynamicVector, cant_subtract_vectors_with_not_equal_size)
 
 TEST(TDynamicVector, can_multiply_vectors_with_equal_size)
 {
-	TDynamicVector<int> v(10), v1(10);
+	TDynamicVector<int> v(1), v1(1);
 	v[0] = 2;
 	v1[0] = 5;
 	EXPECT_EQ(10, v*v1);
