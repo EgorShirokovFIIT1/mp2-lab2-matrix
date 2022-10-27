@@ -4,7 +4,7 @@
 
 TEST(TDynamicMatrix, can_create_matrix_with_positive_length)
 {
-	ASSERT_NO_THROW(TDynamicMatrix<int> m(10));
+	ASSERT_NO_THROW(TDynamicMatrix<int> m(2));
 }
 
 TEST(TDynamicMatrix, cant_create_too_large_matrix)
@@ -19,29 +19,40 @@ TEST(TDynamicMatrix, throws_when_create_matrix_with_negative_length)
 
 TEST(TDynamicMatrix, can_create_copied_matrix)
 {
-	TDynamicMatrix<int> m(10);
+	TDynamicMatrix<int> m(2);
 
 	ASSERT_NO_THROW(TDynamicMatrix<int> m1(m));
 }
 
 TEST(TDynamicMatrix, copied_matrix_is_equal_to_source_one)
 {
-	ADD_FAILURE();
+	TDynamicMatrix<int> m(2);
+	m[0][0] = 1;
+	TDynamicMatrix<int> m1(m);
+	EXPECT_EQ(m, m1);
 }
 
 TEST(TDynamicMatrix, copied_matrix_has_its_own_memory)
 {
-	ADD_FAILURE();
+	TDynamicMatrix<int> m(2);
+	m[0][0] = 10;
+	TDynamicMatrix<int> m1(m);
+	m1[0][0] = -10;
+	EXPECT_NE(m, m1);
+
 }
 
 TEST(TDynamicMatrix, can_get_size)
 {
-	ADD_FAILURE();
+	TDynamicMatrix<int> m(2);
+	EXPECT_EQ(2, m.getSize());
 }
 
 TEST(TDynamicMatrix, can_set_and_get_element)
 {
-	ADD_FAILURE();
+	TDynamicMatrix<int> m(2);
+	m[0][0] = 10;
+	EXPECT_EQ(10, m[0][0]);
 }
 
 TEST(TDynamicMatrix, throws_when_set_element_with_negative_index)
