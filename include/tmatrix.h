@@ -65,7 +65,7 @@ public:
         swap(*this, v);
         return *this;
     }
-    size_t size() const noexcept
+    size_t getSize() const noexcept
     {
         return sz;
     }
@@ -220,11 +220,8 @@ public:
         return out;
     }
 
-    size_t getSize() {
-        return sz;
-    }
+    
 };
-
 
 
 
@@ -290,7 +287,16 @@ public:
     // матрично-векторные операции
     TDynamicVector<T> operator*(const TDynamicVector<T>& v)
     {
-
+        TDynamicVector<T> v1(sz);
+        for (size_t i = 0; i < sz; i++) {
+            T sp = 0;
+            for (size_t j = 0; j < sz; j++) {
+                sp += pMem[i][j] * v[j];
+            }
+            v1[i] = sp;
+            sp = 0;
+        }
+        return v1;
     }
 
     // матрично-матричные операции

@@ -28,4 +28,5 @@ void main()
   cout << "Vector v:" << endl << v << endl;
   cout << "Vector v1:" << endl << v1 << endl;
   cout << "Vector v1:" << endl << v*v1 << endl;
+  cout << "Multip a*v:" << endl << a*v << endl;
 }

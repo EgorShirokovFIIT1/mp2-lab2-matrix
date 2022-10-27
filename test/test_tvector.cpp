@@ -43,7 +43,7 @@ TEST(TDynamicVector, can_get_size)
 {
   TDynamicVector<int> v(4);
 
-  EXPECT_EQ(4, v.size());
+  EXPECT_EQ(4, v.getSize());
 }
 
 //TEST(TDynamicVector, can_set_and_get_element)
