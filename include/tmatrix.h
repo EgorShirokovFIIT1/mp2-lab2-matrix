@@ -300,7 +300,8 @@ public:
     }
 
     // матрично-матричные операции
-    TDynamicMatrix& operator=(const TDynamicMatrix& m) {
+    
+   /* TDynamicMatrix& operator=(const TDynamicMatrix& m) {
         if (*this != m)
         {
             if (sz != m.sz)
@@ -316,6 +317,7 @@ public:
         }
         return *this;
     }
+    */
     TDynamicMatrix operator+(const TDynamicMatrix& m)
     {
         return TDynamicVector<TDynamicVector<T>> :: operator+(m);

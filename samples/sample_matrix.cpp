@@ -3,7 +3,7 @@
 
 void main()
 {
-  TDynamicMatrix<int> a(2), b(2), c(2);
+  TDynamicMatrix<int> a(2), b(2), c(3);
   TDynamicVector<int> v(2),v1(3);
   int i, j;
   v[0] = 1;
@@ -24,12 +24,12 @@ void main()
   cout << "Matrix a * b:" << endl << (a * b) << endl;
   cout << "Matrix a - b:" << endl << (b - a) << endl;
   cout << "Matrix a + b:" << endl << (a+b) << endl;
-  cout << "Vector v:" << endl << v << endl;
-  cout << "Vector v1:" << endl << v1 << endl;
+  cout << "Vector v:" << endl << v << endl << endl;
+  cout << "Vector v1:" << endl << v1 << endl << endl;
   //cout << "Vector v*v1:" << endl << v*v1 << endl;
   //cout << "Multip a*v:" << endl << a*v << endl;
   v = v1;
-  cout << "v = v1" << endl << v << endl;
+  cout << "v = v1" << endl << v << endl << endl;
   c = a;
-  cout << "Matrix c = a:" << endl << c << endl;
+  cout << "Matrix c = a:" << endl << c << endl << endl;
 }
